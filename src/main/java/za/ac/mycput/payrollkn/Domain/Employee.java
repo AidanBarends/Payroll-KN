@@ -2,6 +2,7 @@ package za.ac.mycput.payrollkn.Domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 import java.time.LocalDate;
 
@@ -100,7 +101,7 @@ public class Employee {
         }
 
         public Employee build() {
-            return new Employee();
+            return new Employee(this);
         }
     }
 }

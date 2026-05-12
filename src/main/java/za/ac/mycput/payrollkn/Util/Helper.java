@@ -24,4 +24,11 @@ public class Helper {
         }
         return true;
     }
+
+    public static boolean isValidPostalCode(int postalCode){
+        if(postalCode <1000 || postalCode > 9999){
+            return false;
+        }
+        return true;
+    }
 }
