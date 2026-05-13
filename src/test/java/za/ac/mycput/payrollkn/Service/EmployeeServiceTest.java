@@ -64,5 +64,8 @@ class EmployeeServiceTest {
 
     @Test
     void e_delete() {
+        boolean deleted = service.delete(employee.getEmpNum());
+        assertTrue(deleted);
+        System.out.println("Employee deleted: " + deleted);
     }
 }
