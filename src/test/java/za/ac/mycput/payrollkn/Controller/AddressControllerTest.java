@@ -1,8 +1,6 @@
-package za.ac.mycput.payrollkn.Service;
+package za.ac.mycput.payrollkn.Controller;
 
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import za.ac.mycput.payrollkn.Domain.Address;
@@ -11,11 +9,13 @@ import za.ac.mycput.payrollkn.Factory.AddressFactory;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
+@TestMethodOrder(MethodOrderer.MethodName.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-class AddressServiceTest {
+class AddressControllerTest {
 
     @Autowired
-    private AddressService addressService;
+    private AddressController addressController;
+
     private Address address;
 
     @BeforeAll
@@ -30,41 +30,41 @@ class AddressServiceTest {
     }
 
     @Test
-    void a_create() {
-        Address created =  addressService.create(address);
+    void a_createAddress() {
+        Address created =  addressController.createAddress(address);
         assertNotNull(created);
         System.out.println("Created address: " + created);
     }
 
     @Test
-    void b_read() {
-        Address read = addressService.read(address.getPostalCode());
+    void b_readAddress() {
+        Address read = addressController.readAddress(address.getPostalCode());
         assertNotNull(read);
         System.out.println("Read address: " + read);
     }
 
     @Test
-    void c_update() {
+    void c_updateAddress() {
         Address updated = new Address.Builder()
                 .copy(address)
                 .setStreetName("HertzogBolevoard")
                 .build();
-        Address result = addressService.update(updated);
+        Address result = addressController.updateAddress(updated);
         assertNotNull(result);
         System.out.println("Updated address: " + result);
     }
 
     @Test
-    void d_delete() {
-        boolean deleted = addressService.delete(address.getPostalCode());
-        assertTrue(deleted);
+    void d_deleteAddress() {
+        boolean deleted = addressController.deleteAddress(address.getPostalCode());
+        assertNotNull(deleted);
         System.out.println("Deleted address: " + deleted);
     }
 
     @Test
-    void e_getAll() {
-        assertNotNull(addressService.getAll());
-        System.out.println("All address: " + addressService.getAll());
+    void e_getAllAddress() {
+        assertNotNull(addressController.getAllAddress());
+        System.out.println("All address: " + addressController.getAllAddress());
 
     }
 }

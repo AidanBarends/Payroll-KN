@@ -6,12 +6,13 @@ import jakarta.persistence.Id;
 @Entity
 public class Address {
 
-    @Id
+
     private String streetNum;
     private String streetName;
     private String suburb;
     private String city;
-    private String postalCode;
+    @Id
+    private int postalCode;
 
     private Address(){}
 
@@ -40,7 +41,7 @@ public class Address {
         return city;
     }
 
-    public String getPostalCode() {
+    public int getPostalCode() {
         return postalCode;
     }
 
@@ -61,7 +62,7 @@ public class Address {
         private String streetName;
         private String suburb;
         private String city;
-        private String postalCode;
+        private int postalCode;
 
         public Builder setStreetNum(String streetNum){
             this.streetNum = streetNum;
@@ -83,7 +84,7 @@ public class Address {
             return this;
         }
 
-        public Builder setPostalCode(String postalCode){
+        public Builder setPostalCode(int postalCode){
             this.postalCode = postalCode;
             return this;
         }

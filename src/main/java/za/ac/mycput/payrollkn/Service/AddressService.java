@@ -8,7 +8,7 @@ import za.ac.mycput.payrollkn.Repository.AddressRepository;
 import java.util.List;
 
 @Service
-public class AddressService {
+public class AddressService implements IAddressService {
 
     private AddressRepository addressRepository;
 
@@ -17,15 +17,27 @@ public class AddressService {
         this.addressRepository = addressRepository;
     }
 
+
     public Address create(Address address) {
         return addressRepository.save(address);
     }
 
-    public List<Address> findAll() {
-        return addressRepository.findAll();
+    public Address read(Integer postalCode){
+        return this.addressRepository.findById(postalCode).get();
     }
 
+    public Address update(Address address){
+        return this.addressRepository.save(address);
+    }
 
+    public boolean delete(Integer postalCode){
+        this.addressRepository.deleteById(postalCode);
+        return true;
 
+    }
 
+    @Override
+    public List<Address> getAll() {
+        return this.addressRepository.findAll();
+    }
 }

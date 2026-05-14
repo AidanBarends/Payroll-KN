@@ -5,14 +5,16 @@ import za.ac.mycput.payrollkn.Util.Helper;
 
 public class AddressFactory {
 
-    public static Address createAddress(String streetNum,String streetName, String suburb,String city, String postalCode) {
-        if(Helper.isNullOrEmpty(streetNum) || Helper.isNullOrEmpty(streetName) || Helper.isNullOrEmpty(suburb) || Helper.isNullOrEmpty(city)) {
+    public static Address createAddress(String streetNum,String streetName, String suburb,String city, int postalCode) {
+        if(Helper.isNullOrEmpty(streetNum) ||
+                Helper.isNullOrEmpty(streetName) ||
+                Helper.isNullOrEmpty(suburb) ||
+                Helper.isNullOrEmpty(city) ||
+                !Helper.isValidPostalCode(postalCode)) {
             return null;
         }
 
-        if(!Helper.isNullOrEmpty(postalCode)) {
-            return null;
-        }
+
 
         return new Address.Builder()
                 .setStreetNum(streetNum)

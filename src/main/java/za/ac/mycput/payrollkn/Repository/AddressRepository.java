@@ -4,10 +4,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import za.ac.mycput.payrollkn.Domain.Address;
 
-@Repository
-public interface AddressRepository extends JpaRepository<Address,String> {
+import java.util.List;
 
-    //custom jpa query methods
+@Repository
+public interface AddressRepository extends JpaRepository<Address,Integer> {
+
+    Address findByPostalCode(int postalCode);
+    List<Address> findByStreetName(String streetName);
 
 
 }
